@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang="en" ng-app="calculatorApp"> 
+<head> 
+<meta charset="UTF-8"> 
+<title>AngularJS Calculator</title> 
+<style> 
+    body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            text-align: center; 
+        } 
+    h2 { 
+            color: #333; 
+        } 
+    label { 
+            display: block; 
+            margin-top: 10px; 
+        } 
+    input { 
+            padding: 5px; 
+            margin-bottom: 10px; 
+        } 
+    button { 
+            padding: 8px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        } 
+    p { 
+        margin-top: 10px; 
+        color: #333; 
+    } 
+</style> 
+<script 
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script> 
+</head> 
+<body> 
+    <div ng-controller="CalculatorController"> 
+    <h2>Factorial and Square Calculator</h2> 
+    <label for="numberInput">Enter a number:</label> 
+    <input type="number" id="numberInput" ng-model="userInput" /> 
+    <button ng-click="calculateFactorial()">Calculate Factorial</button> 
+    <p ng-if="factorialResult !== undefined">Factorial: {{ factorialResult }}</p> 
+    <button ng-click="calculateSquare()">Calculate Square</button> 
+    <p ng-if="squareResult !== undefined">Square: {{ squareResult }}</p> 
+    </div> 
+<script> 
+var app = angular.module('calculatorApp', []); 
+app.controller('CalculatorController', function($scope) { 
+$scope.userInput = 0; 
+$scope.factorialResult = undefined; 
+$scope.squareResult = undefined; 
+$scope.calculateFactorial = function() { 
+$scope.factorialResult = factorial($scope.userInput); 
+}; 
+$scope.calculateSquare = function() { 
+$scope.squareResult = square($scope.userInput); 
+}; 
+function factorial(n) { 
+if (n === 0 || n === 1) { 
+return 1; 
+} else { 
+return n * factorial(n - 1); 
+} 
+} 
+function square(n) { 
+return n * n; 
+} 
+}); 
+</script> 
+</body> 
+</html> 
